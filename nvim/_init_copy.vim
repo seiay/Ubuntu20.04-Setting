@@ -90,32 +90,32 @@ set noswapfile
 
 
 " auto reload .vimrc
-augroup source-vimrc
-  autocmd!
-  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
-  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
-augroup END
+" augroup source-vimrc
+"   autocmd!
+"   autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+"   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+" augroup END
 
 " HTML/XML閉じタグ自動補完
-augroup MyXML
-  autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-augroup END
+" augroup MyXML
+"   autocmd!
+"   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+"   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+" augroup END
 
 " auto reload .vimrc
-augroup source-vimrc
-  autocmd!
-  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
-  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
-augroup END
+" augroup source-vimrc
+"   autocmd!
+"   autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+"   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+" augroup END
 
 " auto comment off
-augroup auto_comment_off
-  autocmd!
-  autocmd BufEnter * setlocal formatoptions-=r
-  autocmd BufEnter * setlocal formatoptions-=o
-augroup END
+" augroup auto_comment_off
+"   autocmd!
+"   autocmd BufEnter * setlocal formatoptions-=r
+"   autocmd BufEnter * setlocal formatoptions-=o
+" augroup END
 
 "--------------------
 "  vim-plug
@@ -181,15 +181,22 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   """ .toml file
-  " let g:rc_dir = expand('~/.config/nvim/dein/toml')
-  let g:rc_dir = expand('~/.vim/dein/toml')
-  let s:toml = g:rc_dir . '/dein.toml'
+	" for nvim
+  let g:rc_dir = expand('~/.config/nvim/dein/toml')
+  " for vim
+	" let g:rc_dir = expand('~/.vim/dein/toml') 
+  
+	let s:toml = g:rc_dir . '/dein.toml'
+	" There is not dein_lazy.toml at my environment.
 	"let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
-  call dein#load_toml(s:toml, {'lazy': 0})
+  
+	" tomlファイルに記載されているpluginがloadされる
+	call dein#load_toml(s:toml, {'lazy': 0})
   "call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
+  "call dein#add('vim-airline/vim-airline-themes')
 
   " Required:
   call dein#end()

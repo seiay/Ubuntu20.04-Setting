@@ -244,7 +244,7 @@ zle -N zle-keymap-select
 bindkey  -M viins 'jj' vi-cmd-mode
 
 #
-#  my setting
+#  add setting
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -252,4 +252,11 @@ gsettings set com.gexperts.Tilix.Settings quake-height-percent 100
 # ターミナルでの出力をクリップボードへコピー
 alias copy2clip='xsel -ib'
 # pwdを実行したときに、カレントディレクトリのパスをクリップボードへコピー
-alias pwd="pwd | copy2clip"
+# alias pwd="pwd | copy2clip"
+
+# enable fzf keybind
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+# Nvim Setting
+alias vim='/usr/local/bin/nvim'

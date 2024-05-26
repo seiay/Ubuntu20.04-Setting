@@ -252,7 +252,7 @@ gsettings set com.gexperts.Tilix.Settings quake-height-percent 100
 # ターミナルでの出力をクリップボードへコピー
 alias copy2clip='xsel -ib'
 # pwdを実行したときに、カレントディレクトリのパスをクリップボードへコピー
-# alias pwd="pwd | copy2clip"
+alias pwdc="pwd | copy2clip"
 
 # enable fzf keybind
 source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -260,3 +260,14 @@ source /usr/share/doc/fzf/examples/completion.zsh
 
 # Nvim Setting
 alias vim='/usr/local/bin/nvim'
+
+# Python 3.10 Installed on 2023/10/7
+alias python='/usr/local/bin/python3.10'
+alias pip='/usr/local/bin/pip3.10'
+
+# Set PATHs for CUDA
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+# Set PATHs to solve waarnings that is outputed when installing tensorflow on 2023/10/17
+export PATH=/home/seint/.local/bin:$PATH

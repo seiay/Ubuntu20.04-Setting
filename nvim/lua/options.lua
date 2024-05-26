@@ -35,6 +35,7 @@ local options = {
 	--background = "dark",-- 背景を暗くする
 }
 
+
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end

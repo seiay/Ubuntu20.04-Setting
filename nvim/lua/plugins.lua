@@ -87,6 +87,9 @@ require("packer").startup(function()
   -- use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
 
+  -- indent guide
+  use ({ "lukas-reineke/indent-blankline.nvim" })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

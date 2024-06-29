@@ -271,3 +271,14 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 # Set PATHs to solve waarnings that is outputed when installing tensorflow on 2023/10/17
 export PATH=/home/seint/.local/bin:$PATH
+
+# tmux setting
+alias tl='/usr/bin/tmux list-sessions'
+alias ta="/usr/bin/tmux attach-session -t"
+function tmux-on-directory() {
+  (cd ./$1 || exit; /usr/bin/tmux)
+}
+alias tmux=tmux-on-directory
+
+# online-judge-tools test. To submit, use acc s
+alias ojt='g++ main.cpp && oj t -N -d ./tests'

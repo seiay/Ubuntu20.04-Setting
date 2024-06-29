@@ -12,7 +12,6 @@ local plugins = {
   { "hrsh7th/cmp-cmdline" },     -- cmdline completions
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-nvim-lua" },
-  
  -- { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
  -- { "onsails/lspkind-nvim" },
 
@@ -30,6 +29,10 @@ local plugins = {
   { "jose-elias-alvarez/null-ls.nvim" },   -- formatters and linters
   { "glepnir/lspsaga.nvim" },              -- LSP UIs
 
+  -- preview markdown
+  {"asana17/prev-mark.nvim"},
+ -- {"prev-mark", dir="~/work/prev-mark"}
+
   -- Formatter
   --{ "MunifTanjim/prettier.nvim" },
 
@@ -37,8 +40,18 @@ local plugins = {
   -- { "nvim-telescope/telescope.nvim" },
 
   -- Treesitter
-  -- { "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } },
+  { "nvim-treesitter/nvim-treesitter",
+    config = function() require 'extensions.nvim-treesitter' end,
+  },
   -- { "nvim-telescope/telescope-file-browser.nvim" },
+
+  -- lualine
+  { "nvim-lualine/lualine.nvim",
+    config = function() require 'extensions.lualine_evil' end,
+    --config = function() require 'extensions.lualine_second' end,
+    dependencies = {  'nvim-tree/nvim-web-devicons' }
+  },
+
 
   -- indent guide
   -- { "lukas-reineke/indent-blankline.nvim" },

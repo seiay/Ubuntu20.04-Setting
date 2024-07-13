@@ -132,7 +132,12 @@ local plugins = {
   --{ "jose-elias-alvarez/null-ls.nvim" },   -- formatters and linters
   --{ "glepnir/lspsaga.nvim" },              -- LSP UIs
   -- indent guide
-  { "lukas-reineke/indent-blankline.nvim" },
+  {
+    "lukas-reineke/indent-blankline.nvim" ,
+    main = "ibl",
+--    config = true,
+    config = function () require 'extensions.indent-blankline' end,
+  },
 
   -- preview markdown
   --  {"asana17/prev-mark.nvim"},

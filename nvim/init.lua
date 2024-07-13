@@ -3,4 +3,4 @@ require("autocmds")
 require("options")
 require('extensions')
 require("keybinds")
-require("colorscheme")
+--require("colorscheme_catppuccin") -- previous colorscheme

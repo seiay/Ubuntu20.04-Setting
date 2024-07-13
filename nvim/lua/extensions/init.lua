@@ -1,24 +1,63 @@
+-- disable netrw at the very start of your init.lua (strongly advised) by nvim-tree.lua
+vim.api.nvim_set_var('loaded_netrw', 1)
+vim.api.nvim_set_var('loaded_netrwPlugin', 1)
+
 local plugins = {
-  -- Visual
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },                                                 -- color scheme
-  { "nvim-lualine/lualine.nvim", equires = { 'kyazdani42/nvim-web-devicons', opt = true } }, -- status line
-  { "kyazdani42/nvim-web-devicons" },                                                       -- icons
-  { "akinsho/bufferline.nvim" },                                                            -- buffer line
+  -- Telescope (To use this plugin, you update neovim to the latest version,
+  {
+    'nvim-telescope/telescope.nvim', branch = '0.1.x',
+    config = function() require 'extensions.telescope' end,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    },
+  },
 
-  -- completion
-  { "hrsh7th/nvim-cmp" },        -- The completion plugin
-  { "hrsh7th/cmp-buffer" },      -- buffer completions
-  { "hrsh7th/cmp-path" },        -- path completions
-  { "hrsh7th/cmp-cmdline" },     -- cmdline completions
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-nvim-lua" },
- -- { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
- -- { "onsails/lspkind-nvim" },
+  -- Treesitter
+  { "nvim-treesitter/nvim-treesitter",
+    config = function() require 'extensions.nvim-treesitter' end,
+  },
 
-  -- snippets
-  --	{ "L3MON4D3/LuaSnip" }, --snippet engine
-
+  -- gitsigns
+  { "lewis6991/gitsigns.nvim",
+    config = function() require 'extensions.gitsigns' end, -- error occured
+  },
+  -- colorsheme : onenord
+  { "rmehri01/onenord.nvim",
+    config = function() require 'extensions.onenord' end,
+  },
+  -- lualine
+  { "nvim-lualine/lualine.nvim",
+--    config = function() require 'extensions.lualine_evil' end,
+     config = function() require 'extensions.lualine_second' end,
+    dependencies = {  'nvim-tree/nvim-web-devicons', 'rmehri01/onenord.nvim', 'lewis6991/gitsigns.nvim',
+      'SmiteshP/nvim-navic',  'neovim/nvim-lspconfig',
+    }
+  },
+  -- tree
+  { "nvim-tree/nvim-tree.lua",
+    config = function() require 'extensions.nvim-tree' end,
+    dependencies = { 'nvim-tree/nvim-web-devicons' , 'nvim-telescope/telescope.nvim'},
+  },
+  -- nvim-hlslens
+  {
+    "kevinhwang91/nvim-hlslens",
+    config = function() require 'extensions.nvim-hlslens' end,
+  },
+  -- nvim-scrollbar: 右側にスクロールバーが現れる.
+  {
+    'petertriho/nvim-scrollbar',
+    config = function() require 'extensions.nvim-scrollbar' end,
+    dependencies = {
+      'kevinhwang91/nvim-hlslens', 'lewis6991/gitsigns.nvim',
+    },
+  },
   -- LSP
+  {
+    "neovim/nvim-lspconfig",
+    config = function() require 'extensions.nvim-lspconfig' end,
+  },
   {
     'williamboman/mason.nvim',
     config = function() require 'extensions.mason' end,
@@ -26,42 +65,55 @@ local plugins = {
       'williamboman/mason-lspconfig.nvim', 'neovim/nvim-lspconfig', 'hrsh7th/cmp-nvim-lsp',
     }
   },
-  { "jose-elias-alvarez/null-ls.nvim" },   -- formatters and linters
-  { "glepnir/lspsaga.nvim" },              -- LSP UIs
-
-  -- preview markdown
-  {"asana17/prev-mark.nvim"},
- -- {"prev-mark", dir="~/work/prev-mark"}
-
-  -- Formatter
-  --{ "MunifTanjim/prettier.nvim" },
-
-  -- Telescope (To use this plugin, you update neovim to the latest version,
-  -- { "nvim-telescope/telescope.nvim" },
-
-  -- Treesitter
-  { "nvim-treesitter/nvim-treesitter",
-    config = function() require 'extensions.nvim-treesitter' end,
+  {
+    'SmiteshP/nvim-navic',
+    config = function() require 'extensions.nvim-navic' end,
+    dependencies = 'neovim/nvim-lspconfig',
   },
-  -- { "nvim-telescope/telescope-file-browser.nvim" },
-
-  -- lualine
-  { "nvim-lualine/lualine.nvim",
-    config = function() require 'extensions.lualine_evil' end,
-    --config = function() require 'extensions.lualine_second' end,
-    dependencies = {  'nvim-tree/nvim-web-devicons' }
+  {
+    "SmiteshP/nvim-navbuddy",
+    config = function() require 'extensions.nvim-navbuddy' end,
+    dependencies = {
+      'neovim/nvim-lspconfig', 'SmiteshP/nvim-navic', 'MunifTanjim/nui.nvim',
+      'numToStr/Comment.nvim', 'nvim-telescope/telescope.nvim',
+    },
   },
-
-
+  -- completion
+  { "hrsh7th/nvim-cmp",
+    config = function() require 'extensions.nvim-cmp' end,
+ --   config = function() require 'extensions.nvim-cmp_asana' end,
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in language server client.
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "onsails/lspkind-nvim",
+      {
+        'L3MON4D3/LuaSnip',
+        version = "v2.*",
+        --  intstall jsregexp (optional!)
+        --  build = 'make install_jsregexp',
+        config = function() require 'extensions.luasnip' end,
+        dependencies = { 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' },
+      },
+    }
+  },
+  {
+  'j-hui/fidget.nvim',
+  tag = "v1.0.0", -- Make sure to update this to something recent!
+  config = function() require 'extensions.fidget' end,
+  dependencies = 'neovim/nvim-lspconfig',
+  },
+  --{ "jose-elias-alvarez/null-ls.nvim" },   -- formatters and linters
+  --{ "glepnir/lspsaga.nvim" },              -- LSP UIs
   -- indent guide
   -- { "lukas-reineke/indent-blankline.nvim" },
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
---  if PACKER_BOOTSTRAP then
---    require("packer").sync()
---  end
+  -- preview markdown
+  --  {"asana17/prev-mark.nvim"},
 
+  -- Formatter
+  --{ "MunifTanjim/prettier.nvim" },
 }
 
 -- vim.loader.enable()

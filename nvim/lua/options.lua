@@ -1,6 +1,6 @@
 local options = {
   -- global
-	termguicolors = true,-- ターミナルの色を有効にする
+--	termguicolors = true,-- ターミナルの色を有効にする
   scrolloff = 4,
 	ignorecase = true, -- 検索時に大文字小文字を区別しない
 	smartcase = true, -- 検索時に大文字小文字が混在している場合は大文字小文字を区別する
@@ -58,9 +58,9 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 
   callback = function()
     -- 10.3.1 節で書いたコードをここに移動する
-    vim.api.nvim_buf_set_option(0, 'tabstop', 2)
-    vim.api.nvim_buf_set_option(0, 'shiftwidth', 0)
-    vim.api.nvim_buf_set_option(0, 'expandtab', true)
+    vim.api.nvim_set_option_value('tabstop', 2, {})
+    vim.api.nvim_set_option_value('shiftwidth', 0, {})
+    vim.api.nvim_set_option_value('expandtab', true, {})
   end,
 })
 

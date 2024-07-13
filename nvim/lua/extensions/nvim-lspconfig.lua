@@ -37,3 +37,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+local lsp = require 'lspconfig'
+-- Specific settings for using LSP that are not in mason.nvim
+lsp.ccls.setup {
+  init_options = {
+    compilationDatabaseDirectory = 'build',
+    index = {
+      threads = 0,
+    },
+    clang = {
+      extraArgs = { '--std=c++20' },
+      excludeArgs = { '-frounding-math' },
+    },
+  },
+}
+

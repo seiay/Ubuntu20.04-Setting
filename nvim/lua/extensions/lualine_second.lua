@@ -86,4 +86,4 @@ require('lualine').setup {
   -- WinBarていうものもあるらしい.
 }
 
-vim.api.nvim_set_option('showmode', false)
+vim.api.nvim_set_option_value('showmode', false, {})

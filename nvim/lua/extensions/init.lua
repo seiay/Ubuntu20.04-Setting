@@ -104,16 +104,38 @@ local plugins = {
   config = function() require 'extensions.fidget' end,
   dependencies = 'neovim/nvim-lspconfig',
   },
+  {
+    'folke/trouble.nvim',
+    config = function () require 'extensions.trouble' end,
+    dependencies = 'nvim-tree/nvim-web-devicons',
+  },
+  {
+    'rcarriga/nvim-notify',
+    config = function () require 'extensions.nvim-notify' end,
+  },
+  {
+  'nvimtools/none-ls.nvim',
+  dependencies = 'nvim-lua/plenary.nvim',
+    config = true,
+  },
+  {
+  'jay-babu/mason-null-ls.nvim',
+  event = { 'BufReadPre', 'BufNewFile' },
+  dependencies = {
+    'williamboman/mason.nvim',
+    'nvimtools/none-ls.nvim',
+    },
+    opts = {
+      handlers = {}
+    }
+  },
   --{ "jose-elias-alvarez/null-ls.nvim" },   -- formatters and linters
   --{ "glepnir/lspsaga.nvim" },              -- LSP UIs
   -- indent guide
-  -- { "lukas-reineke/indent-blankline.nvim" },
+  { "lukas-reineke/indent-blankline.nvim" },
 
   -- preview markdown
   --  {"asana17/prev-mark.nvim"},
-
-  -- Formatter
-  --{ "MunifTanjim/prettier.nvim" },
 }
 
 -- vim.loader.enable()

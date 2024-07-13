@@ -4,6 +4,8 @@ require('mason').setup {
       border = 'single',
   },
 }
+
+local lsp = require 'lspconfig'
 -- masonでインストールしたLSをlspconfigで使えるようにする
 require('mason-lspconfig').setup_handlers {
   function(server_name)
@@ -11,9 +13,9 @@ require('mason-lspconfig').setup_handlers {
       capabilities = require('cmp_nvim_lsp').default_capabilities(),
     }
   end,
-  -- for fidget.nvim
+  -- (ここに mason.nvim でインストールした lsp の固有設定を必要に応じて追加
     ['lua_ls'] = function()
-    require('lspconfig').lua_ls.setup {
+    lsp.lua_ls.setup {
       settings = {
         Lua = {
           runtime = {
@@ -35,5 +37,18 @@ require('mason-lspconfig').setup_handlers {
         },
       },
     }
+  end,
+  ['rust_analyzer'] = function()
+  lsp.rust_analyzer.setup {
+    settings = {
+      ['rust-analyzer'] = {
+        diagnostic = { enable = false },
+        assist = { importGranularity = 'module', importPrefix = 'self' },
+        cargo = { allFeatures = true, loadOutDirsFromCheck = true },
+        procMacro = { enable = true },
+        checkOnSave = { allFeatures = true, command = 'clippy' },
+      },
+    },
+  }
   end,
 }

@@ -27,6 +27,13 @@
 - Download `.zshrc` from my github repo
 - install `zplug` from github
 
+### fonts
+1. Download a [Nerd Font](http://nerdfonts.com/)
+
+2. Unzip and copy to `~/.fonts`
+
+3. Run the command `fc-cache -fv` to manually rebuild the font cache
+
 ### neovim
 #### install
 - install nvim >= 0.10.0

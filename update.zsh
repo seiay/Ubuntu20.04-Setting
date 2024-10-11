@@ -1,9 +1,9 @@
 #!/bin/zsh
 
-cp ~/.bashrc ./
+# cp ~/.bashrc ./
 
 cp ~/.zshrc ./
 
-cp ~/.vimrc ./ 
+# cp ~/.vimrc ./ 
 
 cp -r ~/.config/nvim/ ./

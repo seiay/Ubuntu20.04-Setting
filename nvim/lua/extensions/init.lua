@@ -140,7 +140,23 @@ local plugins = {
   },
 
   -- preview markdown
-  --  {"asana17/prev-mark.nvim"},
+  {"asana17/prev-mark.nvim"},
+
+  -- local commit-msg-preview
+  {
+    "commitmsgpreview", dir = "~/commit-msg-preview.nvim/",
+    dependencies = 'nvim-lua/plenary.nvim',
+  },
+  --diffview
+  {
+    "sindrets/diffview.nvim",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+  },
+  {
+    --"supersaintex/super-commit.nvim",
+    "super-commit", dir = "~/work/super-commit.nvim",
+    config = function () require 'extensions.super-commit' end,
+  },
 }
 
 -- vim.loader.enable()

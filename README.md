@@ -1,14 +1,32 @@
-# Ubuntu20.04-Setting
-## Setting
-* vim
-* bashrc
-* vscode
+# My Configuration files 
 
-## How to Use
-1. clone
-2. copy setting files to homeDirectory.
+## Supported apps 
 
+- neovim >= 0.10.0
 
-## How to Update
-go to Ubuntu_mySetting Directory
-./update.sh
+- zsh
+
+## Import
+
+### Neovim
+
+1. download nvim directory from github repo
+
+2. update local configuration files(```~/.config/nvim/```)
+
+### zsh
+
+1. download .zshrc from github repo
+
+2. update local configuration files(```~/.zshrc```)
+
+## Export
+
+1. update configuration files
+
+```bash
+cd ~/Ubuntu20.04-Setting/
+./update.zsh
+```
+
+2. update github repo

@@ -1,4 +1,4 @@
-# ubuntu setup
+# Ubuntu20.04 setup
 
 ## apps
 1. tilix (apt)

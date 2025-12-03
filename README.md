@@ -1,12 +1,16 @@
 # My Configuration files 
 
-## Supported apps 
+## Install apps 
 
 - neovim >= 0.10.0
 
 - zsh
 
-## Import
+## How to Install
+
+confer ```Ubuntu-setup-instruction.md```
+
+## How to import configurations
 
 ### Neovim
 
@@ -20,7 +24,7 @@
 
 2. update local configuration files(```~/.zshrc```)
 
-## Export
+## How to export configurations
 
 1. update configuration files
 
